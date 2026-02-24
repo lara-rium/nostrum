@@ -8,11 +8,18 @@ defmodule Nostrum.Struct.Message.Attachment do
   defstruct [
     :id,
     :filename,
+    :title,
+    :description,
+    :content_type,
     :size,
     :url,
     :proxy_url,
     :height,
-    :width
+    :width,
+    :ephemeral,
+    :duration_secs,
+    :waveform,
+    :flags
   ]
 
   @typedoc "Attachment id"
@@ -20,6 +27,15 @@ defmodule Nostrum.Struct.Message.Attachment do
 
   @typedoc "Name of attached file"
   @type filename :: String.t()
+
+  @typedoc "The title of the file"
+  @type title :: String.t() | nil
+
+  @typedoc "Description for the file (max 1024 characters)"
+  @type description :: String.t() | nil
+
+  @typedoc "The attachment’s media type"
+  @type content_type :: String.t() | nil
 
   @typedoc "Size of the file in bytes"
   @type size :: integer
@@ -36,14 +52,33 @@ defmodule Nostrum.Struct.Message.Attachment do
   @typedoc "Width of the file (if image)"
   @type width :: integer | nil
 
+  @typedoc "Whether this attachment is ephemeral"
+  @type ephemeral :: boolean | nil
+
+  @typedoc "The duration of the audio file in seconds (currently for voice messages)"
+  @type duration_secs :: float | nil
+
+  @typedoc "Base64 encoded bytearray representing a sampled waveform (currently for voice messages)"
+  @type waveform :: String.t() | nil
+
+  @typedoc "Attachment flags combined as a bitfield"
+  @type flags :: integer | nil
+
   @type t :: %__MODULE__{
           id: id,
           filename: filename,
+          title: title,
+          description: description,
+          content_type: content_type,
           size: size,
           url: url,
           proxy_url: proxy_url,
           height: height,
-          width: width
+          width: width,
+          ephemeral: ephemeral,
+          duration_secs: duration_secs,
+          waveform: waveform,
+          flags: flags
         }
 
   @doc false
