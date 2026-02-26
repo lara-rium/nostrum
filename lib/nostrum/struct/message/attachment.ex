@@ -29,12 +29,15 @@ defmodule Nostrum.Struct.Message.Attachment do
   @type filename :: String.t()
 
   @typedoc "The title of the file"
+  @typedoc since: "NEXTVERSION"
   @type title :: String.t() | nil
 
   @typedoc "Description for the file (max 1024 characters)"
+  @typedoc since: "NEXTVERSION"
   @type description :: String.t() | nil
 
   @typedoc "The attachment’s media type"
+  @typedoc since: "NEXTVERSION"
   @type content_type :: String.t() | nil
 
   @typedoc "Size of the file in bytes"
@@ -53,15 +56,19 @@ defmodule Nostrum.Struct.Message.Attachment do
   @type width :: integer | nil
 
   @typedoc "Whether this attachment is ephemeral"
+  @typedoc since: "NEXTVERSION"
   @type ephemeral :: boolean | nil
 
   @typedoc "The duration of the audio file in seconds (currently for voice messages)"
+  @typedoc since: "NEXTVERSION"
   @type duration_secs :: float | nil
 
   @typedoc "Base64 encoded bytearray representing a sampled waveform (currently for voice messages)"
+  @typedoc since: "NEXTVERSION"
   @type waveform :: String.t() | nil
 
   @typedoc "Attachment flags combined as a bitfield"
+  @typedoc since: "NEXTVERSION"
   @type flags :: integer | nil
 
   @type t :: %__MODULE__{
