@@ -469,7 +469,7 @@ defmodule Nostrum.Struct.Embed do
     %__MODULE__{embed | fields: fields ++ [field]}
   end
 
-  def put_field(embed, name, value, inline) do
+  def put_field(%__MODULE__{} = embed, name, value, inline) do
     put_field(%__MODULE__{embed | fields: []}, name, value, inline)
   end
 
