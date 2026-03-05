@@ -195,8 +195,14 @@ defmodule Nostrum.Struct.Message do
   @type application_id :: Application.id() | nil
 
   @typedoc """
-  message flags combined as a bitfield
+  Message flags combined as a bitfield.
+
+  `nil` when no flags are set.
+
+  To convert the raw integer bitfield into a struct of flag values, use
+  `Nostrum.Struct.Message.Flags.from_integer/1`.
   """
+  @typedoc since: "NEXTVERSION"
   @type flags :: Flags.raw_flags() | nil
 
   @typedoc """
@@ -270,7 +276,6 @@ defmodule Nostrum.Struct.Message do
       |> Map.update(:components, nil, &Util.cast(&1, {:list, {:struct, Component}}))
       |> Map.update(:edited_timestamp, nil, &Util.maybe_to_datetime/1)
       |> Map.update(:embeds, nil, &Util.cast(&1, {:list, {:struct, Embed}}))
-      |> Map.update(:flags, nil, &Util.cast(&1, Integer))
       |> Map.update(:guild_id, nil, &Util.cast(&1, Snowflake))
       |> Map.update(:id, nil, &Util.cast(&1, Snowflake))
       |> Map.update(:interaction, nil, &Util.cast(&1, {:struct, Interaction}))
@@ -313,7 +318,6 @@ defmodule Nostrum.Struct.Message do
       |> Util.map_update_if_present(:components, &Util.cast(&1, {:list, {:struct, Component}}))
       |> Util.map_update_if_present(:edited_timestamp, &Util.maybe_to_datetime/1)
       |> Util.map_update_if_present(:embeds, &Util.cast(&1, {:list, {:struct, Embed}}))
-      |> Util.map_update_if_present(:flags, &Util.cast(&1, Integer))
       |> Util.map_update_if_present(:guild_id, &Util.cast(&1, Snowflake))
       |> Util.map_update_if_present(:id, &Util.cast(&1, Snowflake))
       |> Util.map_update_if_present(:interaction, &Util.cast(&1, {:struct, Interaction}))

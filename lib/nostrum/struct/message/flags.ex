@@ -2,6 +2,7 @@ defmodule Nostrum.Struct.Message.Flags do
   @moduledoc """
   Struct representing the flags a message can have
   """
+  @moduledoc since: "NEXTVERSION"
 
   import Bitwise
 
@@ -127,8 +128,22 @@ defmodule Nostrum.Struct.Message.Flags do
   ## Examples
 
   ```elixir
-  iex> Nostrum.Struct.Message.Flags.from_integer(131842)
-  TODO
+  iex> Nostrum.Struct.Message.Flags.from_integer(258)
+  %Nostrum.Struct.Message.Flags{
+    crossposted: false,
+    is_crosspost: true,
+    suppress_embeds: false,
+    source_message_deleted: false,
+    urgent: false,
+    has_thread: false,
+    ephemeral: false,
+    loading: false,
+    failed_to_mention_some_roles_in_thread: true,
+    suppress_notifications: false,
+    is_voice_message: false,
+    has_snapshot: false,
+    is_components_v2: false
+  }
   ```
   """
   @spec from_integer(raw_flags()) :: t
@@ -149,21 +164,21 @@ defmodule Nostrum.Struct.Message.Flags do
   ```elixir
   iex> my_flags = %Nostrum.Struct.Message.Flags{
   ...>  crossposted: false,
-  ...>  is_crosspost: false,
-  ...>  suppress_embeds: true,
-  ...>  source_message_deleted: true,
+  ...>  is_crosspost: true,
+  ...>  suppress_embeds: false,
+  ...>  source_message_deleted: false,
   ...>  urgent: false,
-  ...>  has_thread: true,
+  ...>  has_thread: false,
   ...>  ephemeral: false,
   ...>  loading: false,
-  ...>  failed_to_mention_some_roles_in_thread: false,
+  ...>  failed_to_mention_some_roles_in_thread: true,
   ...>  suppress_notifications: false,
-  ...>  is_voice_message: true,
+  ...>  is_voice_message: false,
   ...>  has_snapshot: false,
   ...>  is_components_v2: false
   ...> }
   iex> Nostrum.Struct.Message.Flags.to_integer(my_flags)
-  TODO
+  258
   ```
   """
   @spec to_integer(t) :: raw_flags()
