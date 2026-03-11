@@ -14,7 +14,6 @@ defmodule Nostrum.Struct.Message do
     Application,
     Attachment,
     Component,
-    Flags,
     Poll,
     Reaction,
     Reference
@@ -33,7 +32,6 @@ defmodule Nostrum.Struct.Message do
     :components,
     :edited_timestamp,
     :embeds,
-    :flags,
     :id,
     :interaction,
     :guild_id,
@@ -240,7 +238,6 @@ defmodule Nostrum.Struct.Message do
           content: content,
           edited_timestamp: edited_timestamp,
           embeds: embeds,
-          flags: flags,
           guild_id: guild_id,
           id: id,
           interaction: interaction,
